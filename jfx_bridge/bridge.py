@@ -321,7 +321,7 @@ def read_exactly(sock, num_bytes):
     data = b""
     while num_bytes > 0:
         new_data = sock.recv(num_bytes)
-        if new_data is None:
+        if not new_data:
             # most likely reason for a none here is the socket being closed on the remote end
             raise BridgeClosedException()
         num_bytes = num_bytes - len(new_data)
